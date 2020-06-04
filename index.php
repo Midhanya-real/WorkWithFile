@@ -32,7 +32,7 @@ function countWord($word)
     $handle = fopen("csv_results/" . "Dak" . "$date" . ".csv", 'w');
 
     foreach ($result as $key => $value) {
-        fputcsv($handle, [$key . ';' . $value]);
+        fputcsv($handle, [$key,$value],',');
     }
 
     fclose($handle);
