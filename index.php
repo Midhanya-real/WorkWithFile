@@ -27,9 +27,8 @@ function countWord($word)
     if (!file_exists("csv_results")) {
         mkdir("csv_results", 777);
     }
-    $dir = opendir("csv_results");
 
-    $date = date('YmdHisu', microtime(true));
+    $date = date_create_from_format('U.u', microtime(true))->format('YmdHisu');
     $handle = fopen("csv_results/" . "Dak" . "$date" . ".csv", 'w');
 
     foreach ($result as $key => $value) {
@@ -37,8 +36,6 @@ function countWord($word)
     }
 
     fclose($handle);
-    closedir($dir);
-    sleep(1); // Так нада, пусть котики не плачут
 }
 if (!empty($_FILES['docs']['name'])) {
     countWord(file_get_contents($_FILES['docs']['tmp_name']));
